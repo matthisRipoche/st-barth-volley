@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    @include('head')
+</head>
+<body>
+
+    @include('public-site.header')
+
+    <main>
+        @yield('content')
+    </main>
+
+    @include('public-site.footer')
+
+</body>
+</html>
