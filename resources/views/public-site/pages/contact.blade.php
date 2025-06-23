@@ -1,5 +1,7 @@
 @extends('public-site.layout')
 
 @section('content')
-    <h1>Contact</h1>
+    @include('public-site.components.hero', [
+        'title' => 'Contact'
+    ])
 @endsection

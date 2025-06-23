@@ -3,7 +3,6 @@
         <img src="{{ Vite::asset('resources/images/bg-herohp.png') }}" alt="">
     </div>
     <div class="wrapper">
-
-        <h1>St Barth Volley Ball </h1>
+        <h1 class="tac">St Barth Volley Ball </h1>
     </div>
 </section>
