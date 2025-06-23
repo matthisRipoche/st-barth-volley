@@ -3,7 +3,7 @@
 <head>
     @include('head')
 </head>
-<body>
+<body class="public-site">
 
     @include('public-site.header')
 

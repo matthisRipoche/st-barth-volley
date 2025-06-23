@@ -1,0 +1,11 @@
+@use "./base/_fonts";
+@use "./base/_base";
+@use "./layout/_index" as layout;
+@use "./pages/_index" as pages;
+@use "./components/_index" as components;
+
+:root {
+    --white: #fff;
+    --black: #000;
+    --green: #14b898;
+}

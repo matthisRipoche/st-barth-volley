@@ -1,5 +1,5 @@
 @extends('public-site.layout')
 
 @section('content')
-    <h1>Home</h1>
+    @include('public-site.components.herohp')
 @endsection
