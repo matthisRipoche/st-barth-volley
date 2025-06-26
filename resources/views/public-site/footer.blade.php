@@ -1,7 +1,7 @@
 <footer>
     <div class="wrapper">
         <div class="image_container">
-            <img src="{{ Vite::asset('resources/images/logo-stbarth.jpeg') }}" alt="">
+            <img src="{{ asset('images/logo-stbarth.jpeg') }}" alt="">
         </div>
         <div class="menu-footer">
             <form method="POST" action="{{ route('logout') }}">
