@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    @include('head')
+    @include('public-site.head')
 </head>
 <body class="public-site">
 

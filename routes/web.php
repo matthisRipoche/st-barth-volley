@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\BO\BOUserController;
+use App\Http\Controllers\BO\BOArticleController;
 
 
 Route::get('/', [PublicController::class, 'home'])->name('public-site.home');
@@ -15,10 +17,12 @@ Route::get('/mentions-legales', [PublicController::class, 'mentionsLegales'])->n
 Route::get('/plan-site', [PublicController::class, 'planSite'])->name('public-site.plan-site');
 Route::get('/cookies', [PublicController::class, 'cookies'])->name('public-site.cookies');
 
-
-
 Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
-    Route::get('/', fn() => view('admin.dashboard'))->name('admin.dashboard');
+    Route::get('/', fn() => view('back-office.pages.dashboard'))->name('back-office.dashboard');
+
+    Route::get('/users', [BOUserController::class, 'index'])->name('back-office.users.index');
+
+    Route::get('/articles', [BOArticleController::class, 'index'])->name('back-office.articles.index');
 });
 
 Route::middleware('auth')->group(function () {
