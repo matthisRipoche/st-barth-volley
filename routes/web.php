@@ -2,20 +2,20 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PublicController;
+use App\Http\Controllers\front\FrontController;
 use App\Http\Controllers\BO\BOUserController;
 use App\Http\Controllers\BO\BOArticleController;
 
 
-Route::get('/', [PublicController::class, 'home'])->name('public-site.home');
-Route::get('/actu', [PublicController::class, 'actu'])->name('public-site.actu');
-Route::get('/bureau', [PublicController::class, 'bureau'])->name('public-site.bureau');
-Route::get('/equipes', [PublicController::class, 'equipes'])->name('public-site.equipes');
-Route::get('/contact', [PublicController::class, 'contact'])->name('public-site.contact');
+Route::get('/', [FrontController::class, 'home'])->name('front.home');
+Route::get('/actu', [FrontController::class, 'actu'])->name('front.actu');
+Route::get('/bureau', [FrontController::class, 'bureau'])->name('front.bureau');
+Route::get('/equipes', [FrontController::class, 'equipes'])->name('front.equipes');
+Route::get('/contact', [FrontController::class, 'contact'])->name('front.contact');
 
-Route::get('/mentions-legales', [PublicController::class, 'mentionsLegales'])->name('public-site.mentions-legales');
-Route::get('/plan-site', [PublicController::class, 'planSite'])->name('public-site.plan-site');
-Route::get('/cookies', [PublicController::class, 'cookies'])->name('public-site.cookies');
+Route::get('/mentions-legales', [FrontController::class, 'mentionsLegales'])->name('front.mentions-legales');
+Route::get('/plan-site', [FrontController::class, 'planSite'])->name('front.plan-site');
+Route::get('/cookies', [FrontController::class, 'cookies'])->name('front.cookies');
 
 Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
     Route::get('/', fn() => view('back-office.pages.dashboard'))->name('back-office.dashboard');

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Article;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -21,5 +22,7 @@ class DatabaseSeeder extends Seeder
             'password' => 'admin123',
             'is_admin' => true,
         ]);
+
+        Article::factory()->count(10)->create();
     }
 }

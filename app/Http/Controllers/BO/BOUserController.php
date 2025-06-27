@@ -10,8 +10,9 @@ class BOUserController extends Controller
 {
     public function index()
     {
-        $users = User::latest()->paginate(10);
-
-        return view('back-office.pages.user.index', compact('users'));
+        $users = User::all();
+        return view('back-office.pages.user.index', [
+            'users' => $users
+        ]);
     }
 }

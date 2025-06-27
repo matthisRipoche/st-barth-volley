@@ -1,0 +1,59 @@
+.liste-actu {
+    padding: 4rem 0;
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .card {
+        background-color: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        height: 100%;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+
+            .card-title {
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: #333333;
+                margin-bottom: 0.75rem;
+            }
+
+            .card-text {
+                font-size: 0.95rem;
+                color: #666666;
+                line-height: 1.5;
+                margin-bottom: 1.25rem;
+            }
+
+            .btn {
+                font-size: 0.875rem;
+                font-weight: 500;
+                padding: 0.5rem 1rem;
+                background-color: var(--green);
+                color: #fff;
+                border-radius: 6px;
+                text-decoration: none;
+
+                &:hover {
+                    background-color: (var(--green), 7%);
+                }
+            }
+        }
+    }
+
+    .col-md-4 {
+        margin-bottom: 2rem;
+        display: flex;
+    }
+}

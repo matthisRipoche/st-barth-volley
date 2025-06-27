@@ -9,10 +9,10 @@
                 <button type="submit">Déconnexion</button>
             </form>
             <ul>
-                <li><a href="{{ route('public-site.mentions-legales') }}">Mentions légales</a></li>
-                <li><a href="{{ route('public-site.plan-site') }}">Plan du site</a></li>
-                <li><a href="{{ route('public-site.cookies') }}">Cookies</a></li>
-                <li><a href="{{ route('public-site.contact') }}">Contact</a></li>
+                <li><a href="{{ route('front.mentions-legales') }}">Mentions légales</a></li>
+                <li><a href="{{ route('front.plan-site') }}">Plan du site</a></li>
+                <li><a href="{{ route('front.cookies') }}">Cookies</a></li>
+                <li><a href="{{ route('front.contact') }}">Contact</a></li>
             </ul>
         </div>
     </div>

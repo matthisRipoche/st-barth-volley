@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    @include('public-site.head')
+    @include('front.head')
 </head>
-<body class="public-site">
+<body class="front">
 
-    @include('public-site.header')
+    @include('front.header')
 
     <main>
         @yield('content')
     </main>
 
-    @include('public-site.footer')
+    @include('front.footer')
 
 </body>
 </html>
