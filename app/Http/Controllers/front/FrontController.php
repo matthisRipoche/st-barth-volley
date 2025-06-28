@@ -16,8 +16,17 @@ class FrontController extends Controller
     public function actu()
     {
         $articles = Article::all();
+        $articles = $articles->sortByDesc('updated_at');
+
         return view('front.pages.actu', [
             'articles' => $articles
+        ]);
+    }
+
+    public function singleArticle(Article $article)
+    {
+        return view('front.pages.single-article', [
+            'article' => $article
         ]);
     }
 

@@ -13,7 +13,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $article->title }}</h5>
                             <p class="card-text">{{ $article->content }}</p>
-                            <a href="#" class="btn btn-primary">Lire
+                            <a href="{{ route('front.single-article', $article) }}" class="btn btn-primary">Lire
                                 l'article</a>
                         </div>
                     </div>

@@ -3,7 +3,10 @@
 @section('content')
 <main class="content">
     <div class="container-fluid p-0">
+        <a href="{{ route('back-office.articles.create') }}" class="btn btn-primary mb-3">Ajouter un article</a>
+
         <h1 class="h3 mb-3"><strong>Articles</strong> - Back Office</h1>
+
 
         <div class="card flex-fill">
             <div class="card-header d-flex justify-content-between align-items-center">
@@ -32,9 +35,8 @@
                             <td>{{ $article->created_at->format('d/m/Y H:i') }}</td>
                             <td>{{ $article->updated_at->format('d/m/Y H:i') }}</td>
                             <td class="text-end">
-                                <a href="#" class="btn btn-sm btn-info">Voir</a>
-                                <a href="#" class="btn btn-sm btn-warning">Modifier</a>
-                                <form method="POST" action="#" class="d-inline" onsubmit="return confirm('Supprimer cet utilisateur ?')">
+                                <a href="{{ route('back-office.articles.show', $article) }}" class="btn btn-sm btn-info">Voir</a>
+                                <form method="POST" action="{{ route('back-office.articles.delete', $article) }}" class="d-inline" onsubmit="return confirm('Supprimer cet article ?')">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>

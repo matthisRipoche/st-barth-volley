@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('image')->nullable();
             $table->boolean('is_published')->default(false);
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // auteur
+            //default id 1
+            $table->foreignId('user_id')->default(1)->constrained()->onDelete('cascade'); // auteur
             $table->timestamps();
         });
     }

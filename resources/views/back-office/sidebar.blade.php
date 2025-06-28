@@ -18,7 +18,7 @@
             </li>
 
             <li class="sidebar-header">
-                Contenu du site
+                Contenu du site public
             </li>
 
             <li class="sidebar-item">
