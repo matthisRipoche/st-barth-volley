@@ -23,7 +23,13 @@
 
             <li class="sidebar-item">
                 <a class="sidebar-link" href="{{ route('back-office.articles.index') }}">
-                    <i class="align-middle" data-feather="square"></i> <span class="align-middle">Article</span>
+                    <i class="align-middle" data-feather="file-text"></i> <span class="align-middle">Article</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('back-office.pages.index') }}">
+                    <i class="align-middle" data-feather="file"></i> <span class="align-middle">Pages</span>
                 </a>
             </li>
         </ul>

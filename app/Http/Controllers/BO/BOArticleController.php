@@ -23,9 +23,9 @@ class BOArticleController extends Controller
         return view('back-office.pages.article.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        Article::create(Request::all());
+        Article::create($request->all());
 
         return redirect()->route('back-office.articles.index');
     }
@@ -37,11 +37,11 @@ class BOArticleController extends Controller
         ]);
     }
 
-    public function update($article)
+    public function update(Request $request, $article)
     {
         $article = Article::find($article);
 
-        $article->update(Request::all());
+        $article->update($request->all());
 
         return redirect()->route('back-office.articles.show', $article);
     }

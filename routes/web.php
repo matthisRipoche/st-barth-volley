@@ -2,10 +2,11 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\front\FrontController;
+use App\Http\Controllers\Front\FrontController;
+use App\Http\Controllers\Front\FrontPageController;
 use App\Http\Controllers\BO\BOUserController;
 use App\Http\Controllers\BO\BOArticleController;
-
+use App\Http\Controllers\BO\BOPageController;
 
 Route::get('/', [FrontController::class, 'home'])->name('front.home');
 
@@ -36,6 +37,13 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
     Route::post('/articles', [BOArticleController::class, 'store'])->name('back-office.articles.store');
     Route::put('/articles/{article}', [BOArticleController::class, 'update'])->name('back-office.articles.update');
     Route::delete('/articles/{article}', [BOArticleController::class, 'delete'])->name('back-office.articles.delete');
+
+    Route::get('/pages', [BOPageController::class, 'index'])->name('back-office.pages.index');
+    Route::get('/pages/create', [BOPageController::class, 'create'])->name('back-office.pages.create');
+    Route::post('/pages', [BOPageController::class, 'store'])->name('back-office.pages.store');
+    Route::get('/pages/{page}', [BOPageController::class, 'show'])->name('back-office.pages.show');
+    Route::put('/pages/{page}', [BOPageController::class, 'update'])->name('back-office.pages.update');
+    Route::delete('/pages/{page}', [BOPageController::class, 'delete'])->name('back-office.pages.delete');
 });
 
 Route::middleware('auth')->group(function () {
@@ -45,3 +53,8 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
+
+Route::get('/{page_slug}', [FrontPageController::class, 'page'])
+    ->where('page_slug', '^(?!admin|login|register|logout|password|articles|actu|contact|bureau|equipes|mentions-legales|plan-site|cookies).*$')
+    ->name('front.page');
