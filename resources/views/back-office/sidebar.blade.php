@@ -42,6 +42,12 @@
                     <i class="align-middle" data-feather="menu"></i> <span class="align-middle">Menu</span>
                 </a>
             </li>
+
+            <li class="sidebar-item {{ Route::is('back-office.setting.*') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('back-office.setting.index') }}">
+                    <i class="align-middle" data-feather="settings"></i> <span class="align-middle">Paramètres</span>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

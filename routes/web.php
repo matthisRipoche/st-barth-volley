@@ -8,6 +8,7 @@ use App\Http\Controllers\BO\BOUserController;
 use App\Http\Controllers\BO\BOArticleController;
 use App\Http\Controllers\BO\BOPageController;
 use App\Http\Controllers\BO\BOMenuController;
+use App\Http\Controllers\BO\BOSettingController;
 use App\Models\Page;
 
 
@@ -57,6 +58,9 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
 
     Route::post('/menus/{menu}/items', [BOMenuController::class, 'addItem'])->name('back-office.menus.items.store');
     Route::delete('/menus/items/{item}', [BOMenuController::class, 'destroyItem'])->name('back-office.menus.items.destroy');
+
+    Route::get('/setting', [BOSettingController::class, 'index'])->name('back-office.setting.index');
+    Route::put('/setting', [BOSettingController::class, 'update'])->name('back-office.setting.update');
 });
 
 Route::middleware('auth')->group(function () {

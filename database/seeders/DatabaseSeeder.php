@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Article;
+use App\Models\MenuItem;
 use App\Models\Menu;
 use App\Models\Page;
 use App\Models\User;
@@ -27,6 +28,12 @@ class DatabaseSeeder extends Seeder
 
         Article::factory()->count(10)->create();
         Page::factory()->count(10)->create();
+        Menu::factory()->create([
+            'title' => 'Menu principal',
+            'slug' => 'main',
+        ]);
         Menu::factory()->count(2)->create();
+
+        MenuItem::factory()->count(10)->create();
     }
 }
