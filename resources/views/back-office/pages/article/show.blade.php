@@ -4,7 +4,7 @@
     <div class="container py-5">
         <h2>Modifier l’article</h2>
 
-        <form action="#" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('back-office.articles.update', $article->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT') {{-- Spoofing PUT method --}}
 

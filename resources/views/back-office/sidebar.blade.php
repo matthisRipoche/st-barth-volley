@@ -5,13 +5,13 @@
         </a>
 
         <ul class="sidebar-nav">
-            <li class="sidebar-item active">
+            <li class="sidebar-item {{ Route::is('back-office.dashboard') ? 'active' : '' }}">
                 <a class="sidebar-link" href="{{ route('back-office.dashboard') }}">
                     <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
                 </a>
             </li>
 
-            <li class="sidebar-item">
+            <li class="sidebar-item {{ Route::is('back-office.users.*') ? 'active' : '' }}">
                 <a class="sidebar-link" href="{{ route('back-office.users.index') }}">
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Users</span>
                 </a>
@@ -21,15 +21,25 @@
                 Contenu du site public
             </li>
 
-            <li class="sidebar-item">
+            <li class="sidebar-item {{ Route::is('back-office.articles.*') ? 'active' : '' }}">
                 <a class="sidebar-link" href="{{ route('back-office.articles.index') }}">
                     <i class="align-middle" data-feather="file-text"></i> <span class="align-middle">Article</span>
                 </a>
             </li>
 
-            <li class="sidebar-item">
+            <li class="sidebar-item {{ Route::is('back-office.pages.*') ? 'active' : '' }}">
                 <a class="sidebar-link" href="{{ route('back-office.pages.index') }}">
-                    <i class="align-middle" data-feather="file"></i> <span class="align-middle">Pages</span>
+                    <i class="align-middle" data-feather="file"></i> <span class="align-middle">Page</span>
+                </a>
+            </li>
+
+            <li class="sidebar-header">
+                Options du site public
+            </li>
+
+            <li class="sidebar-item {{ Route::is('back-office.menus.*') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('back-office.menus.index') }}">
+                    <i class="align-middle" data-feather="menu"></i> <span class="align-middle">Menu</span>
                 </a>
             </li>
         </ul>

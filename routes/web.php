@@ -7,6 +7,9 @@ use App\Http\Controllers\Front\FrontPageController;
 use App\Http\Controllers\BO\BOUserController;
 use App\Http\Controllers\BO\BOArticleController;
 use App\Http\Controllers\BO\BOPageController;
+use App\Http\Controllers\BO\BOMenuController;
+use App\Models\Page;
+
 
 Route::get('/', [FrontController::class, 'home'])->name('front.home');
 
@@ -44,6 +47,16 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
     Route::get('/pages/{page}', [BOPageController::class, 'show'])->name('back-office.pages.show');
     Route::put('/pages/{page}', [BOPageController::class, 'update'])->name('back-office.pages.update');
     Route::delete('/pages/{page}', [BOPageController::class, 'delete'])->name('back-office.pages.delete');
+
+    Route::get('/menus', [BOMenuController::class, 'index'])->name('back-office.menus.index');
+    Route::get('/menus/create', [BOMenuController::class, 'create'])->name('back-office.menus.create');
+    Route::post('/menus', [BOMenuController::class, 'store'])->name('back-office.menus.store');
+    Route::get('/menus/{menu}', [BOMenuController::class, 'show'])->name('back-office.menus.show');
+    Route::put('/menus/{menu}', [BOMenuController::class, 'update'])->name('back-office.menus.update');
+    Route::delete('/menus/{menu}', [BOMenuController::class, 'delete'])->name('back-office.menus.delete');
+
+    Route::post('/menus/{menu}/items', [BOMenuController::class, 'addItem'])->name('back-office.menus.items.store');
+    Route::delete('/menus/items/{item}', [BOMenuController::class, 'destroyItem'])->name('back-office.menus.items.destroy');
 });
 
 Route::middleware('auth')->group(function () {
@@ -55,6 +68,5 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 
-Route::get('/{page_slug}', [FrontPageController::class, 'page'])
-    ->where('page_slug', '^(?!admin|login|register|logout|password|articles|actu|contact|bureau|equipes|mentions-legales|plan-site|cookies).*$')
+Route::get('/{page:slug}', [FrontPageController::class, 'page'])
     ->name('front.page');

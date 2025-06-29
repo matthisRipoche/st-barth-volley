@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Article;
+use App\Models\Menu;
+use App\Models\Page;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -24,5 +26,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Article::factory()->count(10)->create();
+        Page::factory()->count(10)->create();
+        Menu::factory()->count(2)->create();
     }
 }

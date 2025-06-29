@@ -18,6 +18,12 @@ class Page extends Model
         'is_news'
     ];
 
+    protected $casts = [
+        'is_active' => 'boolean',
+        'is_home' => 'boolean',
+        'is_news' => 'boolean',
+    ];
+
     protected static function booted()
     {
         static::creating(function ($page) {
@@ -25,18 +31,13 @@ class Page extends Model
         });
     }
 
-    public function getIsActiveAttribute($value)
+    public function menuItems()
     {
-        return $value ? 'Oui' : 'Non';
+        return $this->hasMany(MenuItem::class);
     }
 
-    public function getIsHomeAttribute($value)
+    public function getRouteKeyName()
     {
-        return $value ? 'Oui' : 'Non';
-    }
-
-    public function getIsNewsAttribute($value)
-    {
-        return $value ? 'Oui' : 'Non';
+        return 'slug';
     }
 }
