@@ -10,9 +10,8 @@ use App\Http\Controllers\BO\BOMediaController;
 use App\Http\Controllers\BO\BOMenuController;
 use App\Http\Controllers\BO\BOSettingController;
 
-use App\Models\Page;
+Route::get('/', [FrontPageController::class, 'frontpage'])->name('front.home');
 
-Route::get('/', [FrontPageController::class, 'page'])->name('front.home');
 Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
     Route::get('/', fn() => view('back-office.pages.dashboard'))->name('back-office.dashboard');
 
