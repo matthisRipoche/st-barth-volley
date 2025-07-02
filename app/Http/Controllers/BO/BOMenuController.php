@@ -87,6 +87,53 @@ class BOMenuController extends Controller
         return redirect()->route('back-office.menus.show', $item->menu_id);
     }
 
+    public function downItem($id)
+    {
+        $item = MenuItem::findOrFail($id);
+
+        // On cherche le PLUS PETIT order > actuel → ASC
+        $otherItem = MenuItem::where('menu_id', $item->menu_id)
+            ->where('order', '>', $item->order)
+            ->orderBy('order', 'asc')
+            ->first();
+
+        if ($otherItem) {
+            $this->swapItems($item, $otherItem);
+        }
+
+        return redirect()->route('back-office.menus.show', $item->menu_id);
+    }
+
+
+    public function upItem($id)
+    {
+        $item = MenuItem::findOrFail($id);
+
+        // On cherche le PLUS GRAND order < actuel → DESC
+        $otherItem = MenuItem::where('menu_id', $item->menu_id)
+            ->where('order', '<', $item->order)
+            ->orderBy('order', 'desc')
+            ->first();
+
+        if ($otherItem) {
+            $this->swapItems($item, $otherItem);
+        }
+
+        return redirect()->route('back-office.menus.show', $item->menu_id);
+    }
+
+    private function swapItems(MenuItem $item1, MenuItem $item2)
+    {
+        $tempOrder = $item1->order;
+        $item1->order = $item2->order;
+        $item2->order = $tempOrder;
+
+        $item1->save();
+        $item2->save();
+    }
+
+
+
 
     public function delete($id)
     {

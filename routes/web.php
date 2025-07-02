@@ -2,28 +2,16 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Front\FrontPageController;
 use App\Http\Controllers\BO\BOUserController;
 use App\Http\Controllers\BO\BOArticleController;
 use App\Http\Controllers\BO\BOPageController;
+use App\Http\Controllers\BO\BOMediaController;
 use App\Http\Controllers\BO\BOMenuController;
 use App\Http\Controllers\BO\BOSettingController;
+
 use App\Models\Page;
 
-
-Route::get('/', [FrontController::class, 'home'])->name('front.home');
-
-Route::get('/actu', [FrontController::class, 'actu'])->name('front.actu');
-Route::get('/actu/{article}', [FrontController::class, 'singleArticle'])->name('front.single-article');
-
-Route::get('/bureau', [FrontController::class, 'bureau'])->name('front.bureau');
-Route::get('/equipes', [FrontController::class, 'equipes'])->name('front.equipes');
-Route::get('/contact', [FrontController::class, 'contact'])->name('front.contact');
-
-Route::get('/mentions-legales', [FrontController::class, 'mentionsLegales'])->name('front.mentions-legales');
-Route::get('/plan-site', [FrontController::class, 'planSite'])->name('front.plan-site');
-Route::get('/cookies', [FrontController::class, 'cookies'])->name('front.cookies');
 
 Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
     Route::get('/', fn() => view('back-office.pages.dashboard'))->name('back-office.dashboard');
@@ -49,6 +37,8 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
     Route::put('/pages/{page}', [BOPageController::class, 'update'])->name('back-office.pages.update');
     Route::delete('/pages/{page}', [BOPageController::class, 'delete'])->name('back-office.pages.delete');
 
+    Route::get('/media', [BOMediaController::class, 'index'])->name('back-office.media.index');
+
     Route::get('/menus', [BOMenuController::class, 'index'])->name('back-office.menus.index');
     Route::get('/menus/create', [BOMenuController::class, 'create'])->name('back-office.menus.create');
     Route::post('/menus', [BOMenuController::class, 'store'])->name('back-office.menus.store');
@@ -58,6 +48,8 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
 
     Route::post('/menus/{menu}/items', [BOMenuController::class, 'addItem'])->name('back-office.menus.items.store');
     Route::delete('/menus/items/{item}', [BOMenuController::class, 'destroyItem'])->name('back-office.menus.items.destroy');
+    Route::put('/menus/items/{item}/up', [BOMenuController::class, 'upItem'])->name('back-office.menus.items.up');
+    Route::put('/menus/items/{item}/down', [BOMenuController::class, 'downItem'])->name('back-office.menus.items.down');
 
     Route::get('/setting', [BOSettingController::class, 'index'])->name('back-office.setting.index');
     Route::put('/setting', [BOSettingController::class, 'update'])->name('back-office.setting.update');

@@ -2,7 +2,7 @@
 <!-- Header menu -->
 <header class="front-header">
     <div class="wrapper">
-        <a href="{{ route('front.home') }}">ST Barth</a>
+        <a href="{{ route('front.page', $page->where('is_home', true)->first()) }}">ST Barth</a>
 
         @if($headerMenu)
             <nav>

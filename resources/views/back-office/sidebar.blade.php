@@ -1,6 +1,6 @@
 <nav id="sidebar" class="sidebar js-sidebar">
     <div class="sidebar-content js-simplebar">
-        <a class="sidebar-brand" href="{{ route('front.home') }}">
+        <a class="sidebar-brand" href="{{ route('front.page', $page->where('is_home', true)->first()) }}">
             <span class="align-middle">ST Barth Volley</span>
         </a>
 
@@ -30,6 +30,12 @@
             <li class="sidebar-item {{ Route::is('back-office.pages.*') ? 'active' : '' }}">
                 <a class="sidebar-link" href="{{ route('back-office.pages.index') }}">
                     <i class="align-middle" data-feather="file"></i> <span class="align-middle">Page</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item {{ Route::is('back-office.media.*') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('back-office.media.index') }}">
+                    <i class="align-middle" data-feather="image"></i> <span class="align-middle">Media</span>
                 </a>
             </li>
 

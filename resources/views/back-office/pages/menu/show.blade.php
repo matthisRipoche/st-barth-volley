@@ -72,6 +72,16 @@
                     @foreach ($menu->items->sortBy('order') as $item)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             {{ $item->label }}
+                            <form action="{{ route('back-office.menus.items.up', $item->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('PUT')
+                                <button type="submit" class="btn btn-sm btn-primary">Monter</button>
+                            </form>
+                            <form action="{{ route('back-office.menus.items.down', $item->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('PUT')
+                                <button type="submit" class="btn btn-sm btn-primary">Descendre</button>
+                            </form>
                             <div>
                                 @if ($item->page)
                                     <small class="text-muted">(Page : {{ $item->page->title }})</small>
