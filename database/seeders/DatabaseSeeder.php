@@ -7,6 +7,7 @@ use App\Models\MenuItem;
 use App\Models\Menu;
 use App\Models\Page;
 use App\Models\User;
+use App\Models\Setting;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -66,6 +67,11 @@ class DatabaseSeeder extends Seeder
             'label' => 'Article',
             'page_id' => 4,
             'menu_id' => 1,
+        ]);
+
+        Setting::factory()->create([
+            'key' => 'header_menu_id',
+            'value' => 1,
         ]);
     }
 }

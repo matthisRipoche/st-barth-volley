@@ -1,6 +1,6 @@
 <nav id="sidebar" class="sidebar js-sidebar">
     <div class="sidebar-content js-simplebar">
-        <a class="sidebar-brand" href="{{ route('front.page', $page->where('is_home', true)->first()) }}">
+        <a class="sidebar-brand" href="#">
             <span class="align-middle">ST Barth Volley</span>
         </a>
 

@@ -9,6 +9,14 @@ use App\Models\Article;
 
 class FrontPageController extends Controller
 {
+    public function frontpage()
+    {
+        $page = Page::where('is_home', true)->first();
+        return view('front.pages.home', [
+            'page' => $page
+        ]);
+    }
+
     public function page(Page $page)
     {
         $articles = Article::all();
