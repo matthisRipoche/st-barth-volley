@@ -12,7 +12,7 @@ class FrontPageController extends Controller
     public function frontpage()
     {
         $page = Page::where('is_home', true)->first();
-        return view('front.pages.home', [
+        return view('front.pages.standardPage', [
             'page' => $page
         ]);
     }
