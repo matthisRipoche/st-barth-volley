@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('blocks', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('content');
+            $table->string('name');
             $table->string('slug')->unique();
-            $table->foreignId('media_id')->nullable()->constrained('media')->nullOnDelete();
-            $table->boolean('is_published')->default(false);
-            //default id 1
-            $table->foreignId('user_id')->default(1)->constrained()->onDelete('cascade'); // auteur
+            $table->integer('order_index')->default(0);
+
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('blocks');
     }
 };

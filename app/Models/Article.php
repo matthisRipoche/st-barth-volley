@@ -15,8 +15,8 @@ class Article extends Model
         'title',
         'slug',
         'content',
-        'image',
         'user_id',
+        'media_id',
     ];
 
     protected static function booted()
@@ -25,12 +25,6 @@ class Article extends Model
             // Génère un slug automatiquement si non défini
             if (empty($article->slug)) {
                 $article->slug = Str::slug($article->title);
-            }
-        });
-
-        static::deleting(function ($article) {
-            if ($article->image) {
-                Storage::disk('public')->delete($article->image);
             }
         });
     }
@@ -43,8 +37,8 @@ class Article extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getImageUrlAttribute()
+    public function media()
     {
-        return $this->image ? Storage::url($this->image) : null;
+        return $this->belongsTo(Media::class);
     }
 }

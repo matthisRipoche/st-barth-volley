@@ -15,4 +15,6 @@
 
 	<link href="{{ asset('template-bo/css/app.css') }}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+	@vite(['resources/scss/BO/app.scss'])
+	@vite(['resources/js/modal-media.js'])
 </head>

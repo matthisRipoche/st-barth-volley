@@ -9,6 +9,7 @@ use App\Http\Controllers\BO\BOPageController;
 use App\Http\Controllers\BO\BOMediaController;
 use App\Http\Controllers\BO\BOMenuController;
 use App\Http\Controllers\BO\BOSettingController;
+use App\Http\Controllers\BO\BOBlockController;
 
 Route::get('/', [FrontPageController::class, 'frontpage'])->name('front.home');
 
@@ -37,6 +38,9 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
     Route::delete('/pages/{page}', [BOPageController::class, 'delete'])->name('back-office.pages.delete');
 
     Route::get('/media', [BOMediaController::class, 'index'])->name('back-office.media.index');
+    Route::post('/media/upload', [BOMediaController::class, 'upload'])->name('back-office.media.upload');
+    Route::post('/media/sync', [BOMediaController::class, 'sync'])->name('back-office.media.sync');
+
 
     Route::get('/menus', [BOMenuController::class, 'index'])->name('back-office.menus.index');
     Route::get('/menus/create', [BOMenuController::class, 'create'])->name('back-office.menus.create');
@@ -49,6 +53,13 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
     Route::delete('/menus/items/{item}', [BOMenuController::class, 'destroyItem'])->name('back-office.menus.items.destroy');
     Route::put('/menus/items/{item}/up', [BOMenuController::class, 'upItem'])->name('back-office.menus.items.up');
     Route::put('/menus/items/{item}/down', [BOMenuController::class, 'downItem'])->name('back-office.menus.items.down');
+
+    Route::get('/blocks', [BOBlockController::class, 'index'])->name('back-office.blocks.index');
+    Route::get('/blocks/create', [BOBlockController::class, 'create'])->name('back-office.blocks.create');
+    Route::post('/blocks', [BOBlockController::class, 'store'])->name('back-office.blocks.store');
+    Route::get('/blocks/{block}', [BOBlockController::class, 'show'])->name('back-office.blocks.show');
+    Route::put('/blocks/{block}', [BOBlockController::class, 'update'])->name('back-office.blocks.update');
+    Route::delete('/blocks/{block}', [BOBlockController::class, 'delete'])->name('back-office.blocks.delete');
 
     Route::get('/setting', [BOSettingController::class, 'index'])->name('back-office.setting.index');
     Route::put('/setting', [BOSettingController::class, 'update'])->name('back-office.setting.update');

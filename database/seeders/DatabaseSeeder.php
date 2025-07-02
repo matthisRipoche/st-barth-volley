@@ -61,18 +61,21 @@ class DatabaseSeeder extends Seeder
             'label' => 'Contact',
             'page_id' => $contactPage->id,
             'menu_id' => $menu->id,
+            'order' => 3,
         ]);
 
         MenuItem::factory()->create([
             'label' => 'A propos',
             'page_id' => $aboutPage->id,
             'menu_id' => $menu->id,
+            'order' => 2,
         ]);
 
         MenuItem::factory()->create([
             'label' => 'Article',
             'page_id' => $newsPage->id,
             'menu_id' => $menu->id,
+            'order' => 1,
         ]);
 
 

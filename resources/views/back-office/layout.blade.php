@@ -11,6 +11,8 @@
         </div>
     </div>
 
+    @yield('modals')
+    
     <script src="{{ asset('template-bo/js/app.js') }}"></script>
 
     <script>

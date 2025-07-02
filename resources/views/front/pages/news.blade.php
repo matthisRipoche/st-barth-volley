@@ -10,8 +10,8 @@
             <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                 @foreach($articles as $article)
                     <article class="bg-white shadow rounded-2xl overflow-hidden hover:shadow-lg transition duration-300">
-                        @if($article->image)
-                            <img src="{{ asset('storage/' . $article->image) }}" alt="{{ $article->title }}" class="w-full h-48 object-cover">
+                        @if($article->media)
+                            <img src="{{ $article->media->getUrlAttribute() }}" alt="{{ $article->title }}" class="w-full h-48 object-cover">
                         @endif
                         <div class="p-6">
                             <h2 class="text-xl font-semibold mb-2">{{ $article->title }}</h2>

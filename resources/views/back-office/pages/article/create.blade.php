@@ -4,7 +4,7 @@
     <div class="container py-5">
         <h2>Créer un nouvel article</h2>
 
-        <form action="{{ route('back-office.articles.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('back-office.articles.store') }}" method="POST">
             @csrf
 
             {{-- Title --}}
@@ -25,10 +25,14 @@
                 <textarea class="form-control" id="content" name="content" rows="6" required>{{ old('content') }}</textarea>
             </div>
 
-            {{-- Image --}}
+            {{-- Media Selector --}}
             <div class="mb-3">
-                <label for="image" class="form-label">Image</label>
-                <input class="form-control" type="file" id="image" name="image">
+                <label class="form-label">Image de couverture</label>
+                <div class="d-flex align-items-center gap-3">
+                    <input type="hidden" name="media_id" id="media_id" value="{{ old('media_id') }}">
+                    <img id="media_preview" src="https://via.placeholder.com/160" class="rounded border" width="80" height="80">
+                    <button type="button" class="btn btn-outline-primary openMediaModal">Choisir dans la médiathèque</button>
+                </div>
             </div>
 
             {{-- Submit --}}
@@ -36,4 +40,8 @@
             <a href="{{ route('back-office.articles.index') }}" class="btn btn-secondary">Annuler</a>
         </form>
     </div>
+@endsection
+
+@section('modals')
+    @include('back-office.modal-mediatheque', ['media' => $media])
 @endsection
