@@ -1,14 +1,11 @@
 @extends('front.layout')
 
 @section('content')
-    <section class="py-12 px-4 max-w-7xl mx-auto">
-        <header class="mb-10 text-center">
-            <h1 class="text-4xl font-bold">{{ $page->title }}</h1>
-            @if($page->description)
-                <p class="mt-2 text-gray-600">{{ $page->description }}</p>
-            @endif
-        </header>
+    @include('front.components.hero', [
+        'title' => $page->title
+    ])
 
+    <section class="py-12 px-4 max-w-7xl mx-auto">
         @if($articles->count())
             <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                 @foreach($articles as $article)
