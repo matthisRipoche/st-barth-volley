@@ -27,47 +27,54 @@ class DatabaseSeeder extends Seeder
 
         Article::factory()->count(10)->create();
 
-        Page::factory()->create([
+        $homePage = Page::factory()->create([
             'title' => 'Accueil',
             'slug' => 'home',
             'is_home' => true,
         ]);
-        Page::factory()->create([
+
+        $contactPage = Page::factory()->create([
             'title' => 'Contact',
             'slug' => 'contact',
         ]);
-        Page::factory()->create([
+
+        $aboutPage = Page::factory()->create([
             'title' => 'A propos',
             'slug' => 'about',
         ]);
-        Page::factory()->create([
+
+        $newsPage = Page::factory()->create([
             'title' => 'Article',
             'slug' => 'article',
             'is_news' => true,
         ]);
 
-        $menu = Menu::factory()->create([
+
+        Menu::factory()->create([
             'title' => 'Menu principal',
             'slug' => 'main',
         ]);
 
+        $menu = Menu::first();
+
         MenuItem::factory()->create([
             'label' => 'Contact',
-            'page_id' => Page::where('slug', 'contact')->first()->id,
+            'page_id' => $contactPage->id,
             'menu_id' => $menu->id,
         ]);
 
         MenuItem::factory()->create([
             'label' => 'A propos',
-            'page_id' => Page::where('slug', 'about')->first()->id,
+            'page_id' => $aboutPage->id,
             'menu_id' => $menu->id,
         ]);
 
         MenuItem::factory()->create([
             'label' => 'Article',
-            'page_id' => Page::where('slug', 'article')->first()->id,
+            'page_id' => $newsPage->id,
             'menu_id' => $menu->id,
         ]);
+
 
         Setting::factory()->create([
             'key' => 'header_menu_id',
