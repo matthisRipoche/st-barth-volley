@@ -43,5 +43,5 @@
 @endsection
 
 @section('modals')
-    @include('back-office.modal-mediatheque', ['media' => $media])
+    @include('back-office.modals.media.modal-mediatheque', ['media' => $media])
 @endsection

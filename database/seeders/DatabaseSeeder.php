@@ -8,6 +8,8 @@ use App\Models\Menu;
 use App\Models\Page;
 use App\Models\User;
 use App\Models\Setting;
+use App\Models\Block;
+use App\Models\BlockCollection;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -48,6 +50,17 @@ class DatabaseSeeder extends Seeder
             'slug' => 'article',
             'is_news' => true,
         ]);
+
+        $blocks = Block::factory()->count(5)->create();
+
+        foreach ($blocks as $i => $block) {
+            BlockCollection::create([
+                'page_id' => $homePage->id,
+                'block_id' => $block->id,
+                'type' => $block->type,
+                'position' => $i,
+            ]);
+        }
 
 
         Menu::factory()->create([

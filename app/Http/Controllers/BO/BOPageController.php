@@ -5,6 +5,7 @@ namespace App\Http\Controllers\BO;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Page;
+use App\Models\Block;
 
 class BOPageController extends Controller
 {
@@ -43,13 +44,15 @@ class BOPageController extends Controller
     public function show($page)
     {
         $page = Page::find($page);
+        $blocks = Block::TYPES;
 
         if (!$page) {
             return redirect()->route('back-office.pages.index')->with('error', 'Page non trouvée.');
         }
 
         return view('back-office.pages.page.show', [
-            'page' => $page
+            'page' => $page,
+            'blocks' => $blocks
         ]);
     }
 
@@ -86,7 +89,6 @@ class BOPageController extends Controller
         return redirect()->route('back-office.pages.index')->with('success', 'Page modifiée avec succès.');
     }
 
-
     public function delete($page)
     {
         $page = Page::find($page);
@@ -98,5 +100,72 @@ class BOPageController extends Controller
         $page->delete();
 
         return redirect()->route('back-office.pages.index');
+    }
+
+    /**
+     * Ajoute un bloc à une page
+     *
+     * @param Request $request
+     * @param string $pageSlug
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function addBlock(Request $request, $pageSlug)
+    {
+        $page = Page::where('slug', $pageSlug)->firstOrFail();
+
+        $request->validate([
+            'block.type' => 'required|string|max:255',
+        ]);
+
+        $type = $request->input('block.type');
+
+        $block = Block::create([
+            'type' => $type,
+            'name' => ucfirst($type),
+            'content' => [],
+        ]);
+
+        $page->blockCollections()->create([
+            'block_id' => $block->id,
+            'type' => $type,
+            'position' => $page->blockCollections()->count() + 1,
+        ]);
+
+        return redirect()->route('back-office.pages.show', $page->id)
+            ->with('success', 'Bloc ajouté avec succès.');
+    }
+
+    public function deleteBlock($pageSlug, $blockId)
+    {
+        $page = Page::where('slug', $pageSlug)->firstOrFail();
+        $block = $page->blockCollections()->where('block_id', $blockId)->firstOrFail();
+
+        $block->delete();
+
+        Block::findOrFail($blockId)->delete();
+
+        return redirect()->route('back-office.pages.show', $page->id)
+            ->with('success', 'Bloc supprimé avec succès.');
+    }
+
+    public function updateBlock(Request $request, $pageId, $blockId)
+    {
+        $page = Page::findOrFail($pageId);
+        $block = Block::findOrFail($blockId);
+
+        // Optionnel : vérifier que le bloc est bien relié à la page
+        if (!$page->blockCollections()->where('block_id', $block->id)->exists()) {
+            abort(403, 'Ce bloc n\'appartient pas à cette page.');
+        }
+
+        $content = $request->input('content', []);
+
+        // Tu peux adapter la validation par type de bloc si tu veux
+        $block->update([
+            'content' => $content,
+        ]);
+
+        return redirect()->route('back-office.pages.show', $page->slug)
+            ->with('success', 'Bloc mis à jour.');
     }
 }

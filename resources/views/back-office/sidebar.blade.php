@@ -54,16 +54,6 @@
                     <i class="align-middle" data-feather="settings"></i> <span class="align-middle">Paramètres</span>
                 </a>
             </li>
-
-            <li class="sidebar-header">
-                Contenu pour développeur
-            </li>
-
-            <li class="sidebar-item {{ Route::is('back-office.blocks.*') ? 'active' : '' }}">
-                <a class="sidebar-link" href="{{ route('back-office.blocks.index') }}">
-                    <i class="align-middle" data-feather="box"></i> <span class="align-middle">Blocs</span>
-                </a>
-            </li>
         </ul>
     </div>
 </nav>

@@ -36,6 +36,11 @@ class Page extends Model
         return $this->hasMany(MenuItem::class);
     }
 
+    public function blockCollections()
+    {
+        return $this->hasMany(BlockCollection::class)->orderBy('position');
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';
