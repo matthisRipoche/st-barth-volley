@@ -1,13 +1,31 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-CqzxZkYO.css",
+    "file": "assets/app-BwYhrtNJ.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
+  "resources/fonts/Roboto-Bold.ttf": {
+    "file": "assets/Roboto-Bold-_ZJd4Sbe.ttf",
+    "src": "resources/fonts/Roboto-Bold.ttf"
+  },
+  "resources/fonts/Roboto-Regular.ttf": {
+    "file": "assets/Roboto-Regular-CN_pkOMA.ttf",
+    "src": "resources/fonts/Roboto-Regular.ttf"
+  },
   "resources/js/app.js": {
-    "file": "assets/app-DaBYqt0m.js",
+    "file": "assets/app-Ogu85axb.js",
     "name": "app",
     "src": "resources/js/app.js",
+    "isEntry": true
+  },
+  "resources/scss/BO/app.scss": {
+    "file": "assets/app-i9E1s0sx.css",
+    "src": "resources/scss/BO/app.scss",
+    "isEntry": true
+  },
+  "resources/scss/Front/app.scss": {
+    "file": "assets/app-Bnl3kiWc.css",
+    "src": "resources/scss/Front/app.scss",
     "isEntry": true
   }
 }

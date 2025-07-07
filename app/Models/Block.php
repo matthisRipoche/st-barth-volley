@@ -14,6 +14,7 @@ class Block extends Model
     ];
 
     public const TYPES = [
+        'html' => 'HTML',
         'video' => 'Vidéo',
         'image_texte' => 'Image + Texte',
         'citation' => 'Citation',

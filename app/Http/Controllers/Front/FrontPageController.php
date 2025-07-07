@@ -11,7 +11,9 @@ class FrontPageController extends Controller
 {
     public function frontpage()
     {
-        $page = Page::where('is_home', true)->first();
+        $page = Page::with(['blockCollections.block'])
+            ->where('is_home', true)
+            ->firstOrFail();
         return view('front.pages.standardPage', [
             'page' => $page
         ]);

@@ -165,7 +165,7 @@ class BOPageController extends Controller
             'content' => $content,
         ]);
 
-        return redirect()->route('back-office.pages.show', $page->slug)
+        return redirect()->route('back-office.pages.show', $page->id)
             ->with('success', 'Bloc mis à jour.');
     }
 }
